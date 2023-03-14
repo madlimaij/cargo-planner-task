@@ -4,7 +4,7 @@ type SearchProps = {
     handleSearch: (e: any) => void
 }
 
-const Search: React.FC<SearchProps> = ({ handleSearch }) => {
+const Search: React.FC<SearchProps> = ({ handleSearch }) => { //@Todo: autocomplete
   return (
     <form className="d-flex my-2 my-lg-0 d-none d-md-block">
       <input

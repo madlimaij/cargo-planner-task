@@ -4,7 +4,7 @@ type CargoBoxesProps = {
     boxes: string
 }
 
-const CargoBoxes: React.FC<CargoBoxesProps> = ({boxes}) => {
+const CargoBoxes: React.FC<CargoBoxesProps> = ({boxes}) => { //@Todo: fix bugs (input & NaN on empty)
   const shipmentBoxes = boxes.split(',');
   const [units, setUnits] = useState(shipmentBoxes);
 
@@ -20,7 +20,7 @@ const CargoBoxes: React.FC<CargoBoxesProps> = ({boxes}) => {
     0
   );
   const bays = Math.ceil(unitSum / 10);
-  
+
   return (
     <>
       <form>
