@@ -1,17 +1,22 @@
 import React from 'react';
 import Search from './Search';
 import Logo from '../resources/Logo.svg';
+import { Shipment } from '../App';
 
 type NavBarProps = {
   handleSideBar: () => void;
   showSideBar: boolean;
   handleSearch: (e: any) => void;
+  search: string;
+  shipments: Shipment[]
 };
 
 const NavBar: React.FC<NavBarProps> = ({
   handleSideBar,
   showSideBar,
   handleSearch,
+  search,
+  shipments
 }) => {
   return (
     <nav className="navbar navbar-expand-md">
@@ -36,7 +41,7 @@ const NavBar: React.FC<NavBarProps> = ({
             <span className="navbar-toggler-icon" />
           </button>
         )}
-        <Search handleSearch={handleSearch} />
+        <Search handleSearch={handleSearch} search={search} shipments={shipments}/>
       </div>
     </nav>
   );
