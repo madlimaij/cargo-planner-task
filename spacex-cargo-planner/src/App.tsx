@@ -27,7 +27,7 @@ const App: React.FC = () => {
       if (response && response.status === 200) {
         setShipments(response.data);
         setIsLoading(false);
-      }
+      } else (alert("We've encountered a problem with the request."))
     }
     fetchData();
   }, []);
@@ -46,15 +46,17 @@ const App: React.FC = () => {
 
   return (
     <>
-      <div className="container-fluid">
+      <div className="container-fluid w-100">
         <NavBar
           handleSideBar={handleSideBar}
           showSideBar={showSideBar}
           handleSearch={handleSearch}
+          search={search}
+          shipments={shipments}
         />
         <div className="row">
           <SideBar shipments={filteredShipments} showSideBar={showSideBar} />
-          <div className="col-md-9 p-4">
+          <div className="col-md-9 p-4 min-vh-100">
             <div className="bg-secondary text-white bg-opacity-25 rounded-4 h-100 p-5">
               {isLoading ? (
                 <Spinner />
@@ -84,7 +86,7 @@ const App: React.FC = () => {
                       ))}
                   </Routes>
                 </BrowserRouter>
-              )}{' '}
+              )}
             </div>
           </div>
         </div>

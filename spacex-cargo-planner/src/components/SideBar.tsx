@@ -9,14 +9,14 @@ type SideBarProps = {
 const SideBar: React.FC<SideBarProps> = ({ shipments, showSideBar }) => {
   return (
     <div className={`sidebar col-md-3 ${showSideBar ? '' : 'd-none'} d-md-block`}>
-    <div className="list-group p-4">
+    <div className="list-group p-4 w-100">
       <h5 className="text-light ">SHIPMENT LIST</h5>
       {shipments ? (
         shipments.map((shipment) => (
           <a
             key={shipment.id}
             href={`/${shipment.id}`}
-            className="list-group-item list-group-item-action text-light bg-transparent border-0 font-weight-light" //active
+            className="list-group-item list-group-item-action text-light bg-transparent border-0 font-weight-light"
           >
             {shipment.name}
           </a>

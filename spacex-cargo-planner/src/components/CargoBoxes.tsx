@@ -5,7 +5,6 @@ type CargoBoxesProps = {
 };
 
 const CargoBoxes: React.FC<CargoBoxesProps> = ({ boxes }) => {
-  //@Todo: fix bugs (input & NaN on empty)
   const shipmentBoxes = boxes.split(',');
   const [units, setUnits] = useState(shipmentBoxes);
 
