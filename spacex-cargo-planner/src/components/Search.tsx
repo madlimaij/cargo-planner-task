@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import Downshift from 'downshift';
 import { Shipment } from '../App';
 import { useNavigate } from 'react-router';
 
 type SearchProps = {
-  handleSearch: (e: any) => void;
+  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   search: string;
   shipments: Shipment[];
 };

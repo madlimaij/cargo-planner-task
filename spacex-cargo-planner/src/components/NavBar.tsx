@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import Search from './Search';
 import Logo from '../resources/Logo.svg';
 import { Shipment } from '../App';
@@ -6,7 +6,7 @@ import { Shipment } from '../App';
 type NavBarProps = {
   handleSideBar: () => void;
   showSideBar: boolean;
-  handleSearch: (e: any) => void;
+  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   search: string;
   shipments: Shipment[]
 };

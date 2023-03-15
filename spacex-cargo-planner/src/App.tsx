@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import Logo from './resources/Logo.svg';
@@ -32,7 +32,7 @@ const App: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleSearch = (e: any) => {
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 

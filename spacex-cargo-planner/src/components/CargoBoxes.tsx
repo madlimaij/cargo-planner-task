@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 type CargoBoxesProps = {
   boxes: string;
@@ -8,7 +8,7 @@ const CargoBoxes: React.FC<CargoBoxesProps> = ({ boxes }) => {
   const shipmentBoxes = boxes.split(',');
   const [units, setUnits] = useState(shipmentBoxes);
 
-  const handleUnitChange = (i: number, e: any) => {
+  const handleUnitChange = (i: number, e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const unitsCopy = [...units];
     unitsCopy[i] = e.target.value.toString();
