@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Downshift from 'downshift';
 import { Shipment } from '../App';
+import { useNavigate } from 'react-router';
 
 type SearchProps = {
   handleSearch: (e: any) => void;
@@ -18,10 +19,16 @@ const Search: React.FC<SearchProps> = ({ handleSearch, search, shipments }) => {
   const filteredItems = items.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
+  const navigate = useNavigate();
 
   return (
     <form className="d-flex my-2 my-lg-0 d-none d-md-block">
-      <Downshift>
+      <Downshift
+        onChange={(selectedItem) => {
+          selectedItem && navigate(`/${selectedItem.id}`);
+        }}
+        itemToString={(item) => (item ? item.name : '')}
+      >
         {({
           getInputProps,
           getMenuProps,

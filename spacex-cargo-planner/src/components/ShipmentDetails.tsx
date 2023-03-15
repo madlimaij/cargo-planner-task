@@ -12,7 +12,7 @@ const ShipmentDetails: React.FC<ShipmentDetailsProp> = ({ shipment }) => {
       <>
         <h1>{shipment.name}</h1>
         <a href={shipment.email}>{shipment.email}</a>
-        {shipment.boxes && <CargoBoxes boxes={shipment.boxes} />}
+        {shipment.boxes && <CargoBoxes key={shipment.id} boxes={shipment.boxes} />}
       </>
     </div>
   );
