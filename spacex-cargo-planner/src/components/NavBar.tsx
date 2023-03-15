@@ -21,7 +21,7 @@ const NavBar: React.FC<NavBarProps> = ({
   return (
     <nav className="navbar navbar-expand-md">
       <div className="p-2 container-fluid">
-        <a href="/">
+        <a href="/cargo-planner">
           <img src={Logo} alt="Logo" className="navbar-brand p-2" />
         </a>
         {showSideBar ? (
