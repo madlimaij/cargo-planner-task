@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Shipment } from '../App';
 
 type SideBarProps = {
@@ -14,13 +15,13 @@ const SideBar: React.FC<SideBarProps> = ({ shipments, showSideBar }) => {
       <h5 className="text-light ">SHIPMENT LIST</h5>
       {shipments ? (
         shipments.map((shipment) => (
-          <a
+          <Link
             key={shipment.id}
-            href={`/${shipment.id}`}
+            to={`/${shipment.id}`}
             className="list-group-item text-light bg-transparent border-0 font-weight-light"
           >
             {shipment.name}
-          </a>
+          </Link>
         ))
       ) : (
         <p>No shipments</p>
