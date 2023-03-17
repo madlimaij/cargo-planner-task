@@ -1,10 +1,13 @@
 import React, { ChangeEvent, useState } from 'react';
+import { useShipments } from '../ShipmentsProvider';
 
 type CargoBoxesProps = {
   boxes: string;
+  id: string;
 };
 
-const CargoBoxes: React.FC<CargoBoxesProps> = ({ boxes }) => {
+const CargoBoxes: React.FC<CargoBoxesProps> = ({ boxes, id }) => {
+  const { updateCargoBoxes } = useShipments();
   const shipmentBoxes = boxes.split(',');
   const [units, setUnits] = useState(shipmentBoxes);
 
@@ -22,10 +25,15 @@ const CargoBoxes: React.FC<CargoBoxesProps> = ({ boxes }) => {
   }, 0);
   const bays = Math.ceil(unitSum / 10);
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    updateCargoBoxes(id, units.join());
+  };
+
   return (
     <>
-      <form>
-        <label className="mt-3">CARGO BOXES</label>
+      <form onSubmit={handleSubmit}>
+        <label className="my-3">CARGO BOXES</label>
         <div className="input-group input-group-sm mb-3">
           {units.map((unit, i) => (
             <input
@@ -39,10 +47,20 @@ const CargoBoxes: React.FC<CargoBoxesProps> = ({ boxes }) => {
             />
           ))}
         </div>
+        <div className="d-flex justify-content-end">
+          <p>
+            Required cargo bays: <strong className="fs-3 p-2">{bays}</strong>
+          </p>
+          <button
+            type="submit"
+            className="btn btn-sm btn-outline-secondary mt-2 mb-4 ms-4"
+            disabled // submit button disabled; enable to update cargo boxes
+          >
+            Submit
+          </button>
+        </div>
+        <div className="d-flex justify-content-end"></div>
       </form>
-      <p>
-        Required cargo bays: <strong className="fs-3 p-2">{bays}</strong>
-      </p>
     </>
   );
 };

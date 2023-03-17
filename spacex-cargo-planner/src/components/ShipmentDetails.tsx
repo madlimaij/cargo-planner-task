@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shipment } from '../App';
+import { Shipment } from '../ShipmentsProvider';
 import CargoBoxes from './CargoBoxes';
 
 type ShipmentDetailsProp = {
@@ -12,7 +12,14 @@ const ShipmentDetails: React.FC<ShipmentDetailsProp> = ({ shipment }) => {
       <>
         <h1>{shipment.name}</h1>
         <a href={shipment.email}>{shipment.email}</a>
-        {shipment.boxes && <CargoBoxes key={shipment.id} boxes={shipment.boxes} />}
+        <hr />
+        {shipment.boxes && (
+          <CargoBoxes
+            key={shipment.id}
+            id={shipment.id}
+            boxes={shipment.boxes}
+          />
+        )}
       </>
     </div>
   );

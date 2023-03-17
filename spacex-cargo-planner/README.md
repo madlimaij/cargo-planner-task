@@ -1,6 +1,8 @@
 # Cargo planner task
 Cargo planner React app using Bootstrap. 
 
+Option to enable submit button (CargoBoxes component).
+
 
 
 # Getting Started with Create React App

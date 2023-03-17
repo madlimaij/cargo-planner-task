@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Spinner = () => {
+const Spinner:React.FC = () => {
   return (
-    <div className="spinner-grow" role="status">
-      <span className="sr-only"></span>
+    <div className='d-flex justify-content-center align-items-center h-75'>
+      <div className="spinner-grow" role="status">
+      </div>
     </div>
   );
 };
