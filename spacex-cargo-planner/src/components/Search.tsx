@@ -1,16 +1,15 @@
 import React, { ChangeEvent } from 'react';
 import Downshift from 'downshift';
-import { Shipment } from '../App';
 import { useNavigate } from 'react-router';
+import { Shipment, useShipments } from '../ShipmentsProvider';
 
-type SearchProps = {
-  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  search: string;
-  shipments: Shipment[];
-};
+const Search: React.FC = () => {
+  const { setSearch, shipments, search } = useShipments();
 
-const Search: React.FC<SearchProps> = ({ handleSearch, search, shipments }) => {
-  //@Todo: autocomplete
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+  };
+
   const items = shipments.map((shipment: Shipment) => ({
     name: shipment.name,
     id: shipment.id,
@@ -20,13 +19,17 @@ const Search: React.FC<SearchProps> = ({ handleSearch, search, shipments }) => {
     item.name.toLowerCase().includes(search.toLowerCase())
   );
   const navigate = useNavigate();
+  const handleSelect = (selectedItem: any) => {
+    if (selectedItem) {
+      navigate(`/${selectedItem.id}`);
+      setSearch('');
+    }
+  };
 
   return (
     <form className="d-flex my-2 my-lg-0 d-none d-md-block">
       <Downshift
-        onChange={(selectedItem) => {
-          selectedItem && navigate(`/${selectedItem.id}`);
-        }}
+        onChange={handleSelect}
         itemToString={(item) => (item ? item.name : '')}
       >
         {({
@@ -55,7 +58,7 @@ const Search: React.FC<SearchProps> = ({ handleSearch, search, shipments }) => {
                 <div className="dropdown-menu w-100 show">
                   {items
                     .filter(
-                      (item) =>
+                      item =>
                         !inputValue ||
                         item.name
                           .toLowerCase()

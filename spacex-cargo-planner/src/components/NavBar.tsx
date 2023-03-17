@@ -1,23 +1,14 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import Search from './Search';
 import Logo from '../resources/Logo.svg';
-import { Shipment } from '../App';
+import { useShipments } from '../ShipmentsProvider';
 
-type NavBarProps = {
-  handleSideBar: () => void;
-  showSideBar: boolean;
-  handleSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  search: string;
-  shipments: Shipment[]
-};
+const NavBar: React.FC = () => {
+  const { setShowSideBar, showSideBar } = useShipments();
+  const handleSideBar = () => {
+    setShowSideBar(!showSideBar);
+  };
 
-const NavBar: React.FC<NavBarProps> = ({
-  handleSideBar,
-  showSideBar,
-  handleSearch,
-  search,
-  shipments
-}) => {
   return (
     <nav className="navbar navbar-expand-md">
       <div className="p-2 container-fluid">
@@ -30,7 +21,7 @@ const NavBar: React.FC<NavBarProps> = ({
             className="btn-close navbar-toggler btn-close-white"
             onClick={handleSideBar}
             aria-label="Close"
-          ></button>
+          />
         ) : (
           <button
             className="navbar-toggler navbar-dark"
@@ -41,7 +32,7 @@ const NavBar: React.FC<NavBarProps> = ({
             <span className="navbar-toggler-icon" />
           </button>
         )}
-        <Search handleSearch={handleSearch} search={search} shipments={shipments}/>
+        <Search />
       </div>
     </nav>
   );
